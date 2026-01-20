@@ -40,6 +40,7 @@
         <script src="data/NOSURVEY_2.js"></script>
         <script src="data/ROADRESERVE_3.js"></script>
         <script src="data/CADASTRALLOTS94_4.js"></script>
+        <script src="data/LAEDISTRICTBOUNDARY_5.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
@@ -463,7 +464,93 @@
         });
         bounds_group.addLayer(layer_CADASTRALLOTS94_4);
         map.addLayer(layer_CADASTRALLOTS94_4);
+        function pop_LAEDISTRICTBOUNDARY_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ogc_fid'] !== null ? autolinker.link(String(feature.properties['ogc_fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['objectid'] !== null ? autolinker.link(String(feature.properties['objectid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['admin2name'] !== null ? autolinker.link(String(feature.properties['admin2name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['admin2pcod'] !== null ? autolinker.link(String(feature.properties['admin2pcod']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['admin2refn'] !== null ? autolinker.link(String(feature.properties['admin2refn']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['admin2altn'] !== null ? autolinker.link(String(feature.properties['admin2altn']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['admin2al_1'] !== null ? autolinker.link(String(feature.properties['admin2al_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['admin1name'] !== null ? autolinker.link(String(feature.properties['admin1name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['admin1pcod'] !== null ? autolinker.link(String(feature.properties['admin1pcod']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['admin0name'] !== null ? autolinker.link(String(feature.properties['admin0name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['admin0pcod'] !== null ? autolinker.link(String(feature.properties['admin0pcod']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['date'] !== null ? autolinker.link(String(feature.properties['date']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['validon'] !== null ? autolinker.link(String(feature.properties['validon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['validto'] !== null ? autolinker.link(String(feature.properties['validto']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['shape_leng'] !== null ? autolinker.link(String(feature.properties['shape_leng']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['shape_area'] !== null ? autolinker.link(String(feature.properties['shape_area']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_LAEDISTRICTBOUNDARY_5_0() {
+            return {
+                pane: 'pane_LAEDISTRICTBOUNDARY_5',
+                opacity: 1,
+                color: 'rgba(251,40,251,1.0)',
+                dashArray: '4.0,8.0',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_LAEDISTRICTBOUNDARY_5');
+        map.getPane('pane_LAEDISTRICTBOUNDARY_5').style.zIndex = 405;
+        map.getPane('pane_LAEDISTRICTBOUNDARY_5').style['mix-blend-mode'] = 'normal';
+        var layer_LAEDISTRICTBOUNDARY_5 = new L.geoJson(json_LAEDISTRICTBOUNDARY_5, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_LAEDISTRICTBOUNDARY_5',
+            layerName: 'layer_LAEDISTRICTBOUNDARY_5',
+            pane: 'pane_LAEDISTRICTBOUNDARY_5',
+            onEachFeature: pop_LAEDISTRICTBOUNDARY_5,
+            style: style_LAEDISTRICTBOUNDARY_5_0,
+        });
+        bounds_group.addLayer(layer_LAEDISTRICTBOUNDARY_5);
+        map.addLayer(layer_LAEDISTRICTBOUNDARY_5);
         var overlaysTree = [
+            {label: '<img src="legend/LAEDISTRICTBOUNDARY_5.png" /> LAE DISTRICT BOUNDARY', layer: layer_LAEDISTRICTBOUNDARY_5},
             {label: '<img src="legend/CADASTRALLOTS94_4.png" /> CADASTRAL LOTS (94)', layer: layer_CADASTRALLOTS94_4},
             {label: '<img src="legend/ROADRESERVE_3.png" /> ROAD RESERVE', layer: layer_ROADRESERVE_3},
             {label: '<img src="legend/NOSURVEY_2.png" /> NO SURVEY', layer: layer_NOSURVEY_2},
